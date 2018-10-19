@@ -85,24 +85,82 @@ function check(input) {
     input.value = input.value.replace(/[^-0-9\,\.]/g, '');
 }
 
-function connectionError() {
-    $(".error-y").each((i, e) => {
-        if (i == 0) {
-            e.innerHTML = '<div style="color:red">Произошла ошибка</span></div>';
-        }
-        else
-            e.innerHTML = '<div style="color:red">Проверьте подключение к сети</div>';
-    });
-}
+function drawPoints() {
+    const width = 270;
+    const hight = 270;
+    const extraValue = 90;
+    const r = 43;
+    let canvas = document.getElementById("canvas");
+    let ctx = canvas.getContext("2d");
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, width + extraValue, hight + extraValue);
+    ctx.fillStyle = "#03899C";
+    ctx.beginPath();
+    ctx.moveTo(width / 2, hight / 2);
+    ctx.lineTo(width / 2, hight / 2 + r / 2);
+    ctx.arc(width / 2, hight / 2, r / 2, Math.PI / 2, Math.PI, false);
+    ctx.lineTo(width / 2 - r / 2, hight / 2 - r);
+    ctx.lineTo(width / 2, hight / 2 - r);
+    ctx.lineTo(width / 2, hight / 2 - r / 2);
+    ctx.lineTo(width / 2 + r / 2, hight / 2);
+    ctx.lineTo(width / 2, hight / 2);
+    ctx.stroke();
+    ctx.fill();
 
-function drawPoint(match) {
-    alert(match);
-}
+    ctx.beginPath();
+    ctx.moveTo(0, hight / 2);
+    ctx.lineTo(width + extraValue, hight / 2);
+    ctx.lineTo(width - 10 + extraValue, hight / 2 - 5);
+    ctx.moveTo(width + extraValue, hight / 2);
+    ctx.lineTo(width - 10 + extraValue, hight / 2 + 5);
+    ctx.stroke();
 
-/*$(document).on('submit','#form', function submit(event) {
-    let y = checkY(), x = checkX(), r = checkR();
-    if (!x || !y || !r) {
-        outputError(x,y,r);
-        event.preventDefault();
+    ctx.beginPath();
+    ctx.moveTo(width / 2, hight + extraValue);
+    ctx.lineTo(width / 2, 0);
+    ctx.lineTo(width / 2 - 5, 10);
+    ctx.moveTo(width / 2, 0);
+    ctx.lineTo(width / 2 + 5, 10);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(width / 2 + r, hight / 2 - 5);
+    ctx.lineTo(width / 2 + r, hight / 2 + 5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(width / 2 - r, hight / 2 - 5);
+    ctx.lineTo(width / 2 - r, hight / 2 + 5);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(width / 2 - 5, hight / 2 + r);
+    ctx.lineTo(width / 2 + 5, hight / 2 + r);
+    ctx.stroke();
+
+    ctx.fillStyle = "#FFAE00";
+    let values = $("#result-table td").toArray();
+    for (let i = 0; i < values.length / 4; ++i) {
+        ctx.beginPath();
+        ctx.arc(values[i * 4].innerText * r / values[i * 4 + 2].innerText + width / 2, -values[i * 4 + 1].innerText * r / values[i * 4 + 2].innerText + hight / 2, 2, 0, Math.PI * 2, false);
+        ctx.stroke();
+        ctx.fill();
     }
-});*/
+
+    ctx.fillStyle = "#03899C";
+    ctx.font = "10px Arial";
+    ctx.fillText("X", width - 10 + extraValue, hight / 2 - 15);
+    ctx.fillText("Y", width / 2 - 18, 12);
+    ctx.fillText("R", width / 2 + r - 5, hight / 2 + 15);
+    ctx.fillText("R", width / 2 + 4, hight / 2 - r + 5);
+    ctx.fillText("-R", width / 2 - r - 5, hight / 2 + 15);
+    ctx.fillText("-R", width / 2 + 4, hight / 2 + r + 5);
+    ctx.fillText("R/2", width / 2 + r / 2 - 5, hight / 2 + 15);
+    ctx.fillText("R/2", width / 2 + 6, hight / 2 - r / 2 + 5);
+    ctx.fillText("-R/2", width / 2 - r / 2 - 17, hight / 2 + 15);
+    ctx.fillText("-R/2", width / 2 + 4, hight / 2 + r / 2 + 5);
+}
+
+$(() => {
+    drawPoints();
+});

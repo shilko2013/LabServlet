@@ -10,7 +10,7 @@
     <title>Лаба 2</title>
     <script type="text/javascript" language="text/javascript" src="../sort_table.js"></script>
     <script type="text/javascript" language="text/javascript" src="../jquery-3.3.1.js"></script>
-    <script type="text/javascript" language="text/javascript" src="../script.js?v=1.1.0"></script>
+    <script type="text/javascript" language="text/javascript" src="../script.js?v=1.1.5"></script>
     <style>
         /**
             General colors
@@ -98,81 +98,18 @@
             min-width: 160px;
         }
 
+        article [name*='param-r'] {
+            min-width: 160px;
+        }
+
         [name='param-x'] {
             padding: 0 20% 0 20%;
         }
 
-        #task-img:hover {
-            transform: scale(1.1);
+        #canvas:hover {
+            transform: scale(1.3);
+            cursor: pointer;
         }
-
-        /* body {
-             background: #5FC0CE;
-         }
-
-         header {
-             font-size: medium;
-             color: #FFAE00;
-             text-shadow: 1px 1px 2px #FF1300;
-         }
-
-         header > table {
-             background-color: #03899C;
-             width: 100%;
-             line-height: 0;
-             min-width: 450px;
-         }
-
-         table.rounded-corners {
-             border-radius: 50px;
-             border: 3px solid #03799D;
-         }
-
-         header h1 {
-             text-align: center
-         }
-
-         article div.error-div {
-             text-align: center;
-             color: #dd0c00;
-             text-shadow: 1px 1px 2px #FFAE00;
-             font-size: larger;
-         }
-
-         #back-page-button {
-             height: 60px;
-             width: 200px;
-             border-radius: 15px;
-             border: 3px solid #03799D;
-             background-color: #03899C;
-             text-shadow: 1px 1px 2px #FF1300;
-             color: #FFAE00;
-             padding: 0 2% 0 2%;
-             outline: none;
-             cursor: pointer;
-         }
-
-         #back-page-button:active {
-             background-color: #5FC0CE;
-         }
-
-         article table {
-             text-align: center;
-             width: 100%;
-         }
-
-         table.article-table {
-             border-collapse: collapse;
-             border: 3px solid #03799D;
-         }
-
-         table.article-table td {
-             border: 3px solid #03799D;
-         }
-
-         table.article-table th {
-             border: 3px solid #03799D;
-         }*/
 
         article span#yes {
             color: #009000;
@@ -189,6 +126,12 @@
             color: #FFAE00;
             font-size: medium;
             cursor: pointer;
+        }
+
+        canvas#canvas {
+            display: block;
+            margin: 0 auto;
+            transition: transform ease-in-out 1s;
         }
 
     </style>
@@ -221,10 +164,6 @@
                     параметра <span class="param">R</span>
                     и нажмите на <span class="check-text">График</span>.
                 </div>
-            </td>
-            <td rowspan="2">
-                <img id="task-img" src="../field.png" title="График области" alt="Не удалось загрузить график"
-                     onclick="formSubmit();"/>
             </td>
         </tr>
         <tr>
@@ -323,7 +262,10 @@
             </td>
         </tr>
     </table>
-    <table class="article-table" rules="all">
+    <p align="center"><span class="check-text">График области:</span></p>
+    <canvas id="canvas" onclick="formSubmit();" title="График области" width="360px" height="360px"></canvas>
+    <br>
+    <table class="article-table" rules="all" id="result-table">
         <colgroup style="background-color: #21cfda">
             <col>
             <col>
@@ -357,6 +299,8 @@
                         out.println("<td><span id=\"no\">нет</span></td>");
                     out.println("</tr>");
                 }
+                if (result.size() == 0)
+                    out.println("<div align=\"center\">Здесь будут храниться данные о предыдущих точках<div>");
             }
         %>
         </tbody>
