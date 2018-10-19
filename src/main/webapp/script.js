@@ -10,7 +10,7 @@ function checkR() {
 
 function clearY() {
     $(".error-y").each((i, e) => {
-            e.innerHTML = '';
+        e.innerHTML = '';
     });
 }
 
@@ -78,11 +78,25 @@ function formSubmit() {
     else
         clearR();
     if (!flag)
-        document.getElementById('form').submit(event);
+        document.getElementById("form").submit(event);
 }
 
 function check(input) {
     input.value = input.value.replace(/[^-0-9\,\.]/g, '');
+}
+
+function connectionError() {
+    $(".error-y").each((i, e) => {
+        if (i == 0) {
+            e.innerHTML = '<div style="color:red">Произошла ошибка</span></div>';
+        }
+        else
+            e.innerHTML = '<div style="color:red">Проверьте подключение к сети</div>';
+    });
+}
+
+function drawPoint(match) {
+    alert(match);
 }
 
 /*$(document).on('submit','#form', function submit(event) {

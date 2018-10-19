@@ -11,11 +11,11 @@ public class Results {
 
     public Results() {}
 
-    public class ResultRow {
-        double x,y,z;
-        boolean match;
-    }
     private List<ResultRow> results;
+
+    public void add(ResultRow resultRow) {
+        results.add(resultRow);
+    }
 
     public List<ResultRow> getResults() {
         return results;
