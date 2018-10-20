@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/index.html")
-public class ControllerServlet extends HttpServlet {
+public class ControllerServlet extends HttpServlet { //TODO click y, button submit
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -19,6 +19,8 @@ public class ControllerServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/input.jsp").forward(request, response);
             return;
         }
+        if (request.getSession().getAttribute("results") == null)
+            request.getSession().setAttribute("results", new Results());
         request.getRequestDispatcher("/WEB-INF/check").forward(request,response);
     }
 }

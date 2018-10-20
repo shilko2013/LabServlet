@@ -13,15 +13,30 @@ import java.io.PrintWriter;
 @WebServlet("/WEB-INF/check")
 public class AreaCheckServlet extends HttpServlet {
 
+    public String escapeHTML(String s) {
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c > 127 || c == '"' || c == '<' || c == '>' || c == '&') {
+                out.append("&#");
+                out.append((int) c);
+                out.append(';');
+            } else {
+                out.append(c);
+            }
+        }
+        return out.toString();
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ResultRow resultRow = new ResultRow();
         final String xString = request.getParameter("param-x");
         final String yString = request.getParameter("param-y");
         final String rString = request.getParameter("param-r");
-        resultRow.setX(xString);
-        resultRow.setY(yString);
-        resultRow.setR(rString);
+        resultRow.setX(escapeHTML(xString));
+        resultRow.setY(escapeHTML(yString));
+        resultRow.setR(escapeHTML(rString));
         try {
             String xStringTemp = xString.replace(',', '.');
             String yStringTemp = yString.replace(',', '.');

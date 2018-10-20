@@ -157,7 +157,7 @@ function drawPoints() {
     ctx.fillText("-R", width / 2 + 4, hight / 2 + r + 5);
     ctx.fillText("R/2", width / 2 + r / 2 - 5, hight / 2 + 15);
     ctx.fillText("R/2", width / 2 + 6, hight / 2 - r / 2 + 5);
-    ctx.fillText("-R/2", width / 2 - r / 2 - 17, hight / 2 + 15);
+    ctx.fillText("-R/2", width / 2 - r / 2 - 20, hight / 2 - 5);
     ctx.fillText("-R/2", width / 2 + 4, hight / 2 + r / 2 + 5);
 }
 
