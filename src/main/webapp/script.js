@@ -1,6 +1,7 @@
 const width = 270;
 const hight = 270;
 const r = 43;
+const extraValue = 90;
 
 function checkY() {
     let number = parseFloat($("input[name='param-y']").val().replace(",", "."));
@@ -106,11 +107,12 @@ function check(input) {
 }
 
 function drawPoints() {
-    const extraValue = 90;
     let canvas = document.getElementById("canvas");
     let ctx = canvas.getContext("2d");
+
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, width + extraValue, hight + extraValue);
+
     ctx.fillStyle = "#03899C";
     ctx.beginPath();
     ctx.moveTo(width / 2, hight / 2);
@@ -123,6 +125,20 @@ function drawPoints() {
     ctx.lineTo(width / 2, hight / 2);
     ctx.stroke();
     ctx.fill();
+
+    ctx.fillStyle = "#FFAE00";
+    let values = $("#result-table td").toArray();
+    for (let i = 0; i < values.length / 4; ++i) {
+        ctx.beginPath();
+        ctx.arc(values[i * 4].innerText * r / values[i * 4 + 2].innerText + width / 2, -values[i * 4 + 1].innerText * r / values[i * 4 + 2].innerText + hight / 2, 2, 0, Math.PI * 2, false);
+        ctx.stroke();
+        ctx.fill();
+    }
+
+    drawBase(ctx);
+}
+
+function drawBase(ctx) {
 
     ctx.beginPath();
     ctx.moveTo(0, hight / 2);
@@ -155,15 +171,6 @@ function drawPoints() {
     ctx.lineTo(width / 2 + 5, hight / 2 + r);
     ctx.stroke();
 
-    ctx.fillStyle = "#FFAE00";
-    let values = $("#result-table td").toArray();
-    for (let i = 0; i < values.length / 4; ++i) {
-        ctx.beginPath();
-        ctx.arc(values[i * 4].innerText * r / values[i * 4 + 2].innerText + width / 2, -values[i * 4 + 1].innerText * r / values[i * 4 + 2].innerText + hight / 2, 2, 0, Math.PI * 2, false);
-        ctx.stroke();
-        ctx.fill();
-    }
-
     ctx.fillStyle = "#03899C";
     ctx.font = "10px Arial";
     ctx.fillText("X", width - 10 + extraValue, hight / 2 - 15);
@@ -180,4 +187,30 @@ function drawPoints() {
 
 $(() => {
     drawPoints();
+    $("#result-table tr").mouseover((event) => {
+        if (event.currentTarget.id == "table-header")
+            return;
+        event.currentTarget.style.backgroundColor = "#5FB0CF"; //#5FC0CE - #FFF
+        let values = $(event.currentTarget).find("td").toArray();
+        let canvas = document.getElementById("canvas");
+        let ctx = canvas.getContext("2d");
+        ctx.fillStyle = "red";
+        ctx.beginPath();
+        ctx.arc(values[0].innerText * r / values[2].innerText + width / 2, -values[1].innerText * r / values[2].innerText + hight / 2, 2, 0, Math.PI * 2, false);
+        ctx.stroke();
+        ctx.fill();
+    }).mouseout((event) => {
+        if (event.currentTarget.id == "table-header")
+            return;
+        event.currentTarget.style.backgroundColor = null;
+        let values = $(event.currentTarget).find("td").toArray();
+        let canvas = document.getElementById("canvas");
+        let ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#FFAE00";
+        ctx.beginPath();
+        ctx.arc(values[0].innerText * r / values[2].innerText + width / 2, -values[1].innerText * r / values[2].innerText + hight / 2, 2, 0, Math.PI * 2, false);
+        ctx.stroke();
+        ctx.fill();
+        drawPoints();
+    });
 });

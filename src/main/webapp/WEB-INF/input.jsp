@@ -10,7 +10,7 @@
     <title>Лаба 2</title>
     <script type="text/javascript" language="text/javascript" src="../sort_table.js"></script>
     <script type="text/javascript" language="text/javascript" src="../jquery-3.3.1.js"></script>
-    <script type="text/javascript" language="text/javascript" src="../script.js?v=1.2.4"></script>
+    <script type="text/javascript" language="text/javascript" src="../script.js?v=1.3.4"></script>
     <style>
         /**
             General colors
@@ -295,7 +295,7 @@
             <col>
         </colgroup>
         <thead onclick="sort(event);">
-        <tr>
+        <tr id="table-header">
             <th>X <span class="sort-symbol">⮃</span></th>
             <th>Y <span class="sort-symbol">⮃</span></th>
             <th>R <span class="sort-symbol">⮃</span></th>
