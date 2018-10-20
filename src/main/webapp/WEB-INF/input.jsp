@@ -10,7 +10,7 @@
     <title>Лаба 2</title>
     <script type="text/javascript" language="text/javascript" src="../sort_table.js"></script>
     <script type="text/javascript" language="text/javascript" src="../jquery-3.3.1.js"></script>
-    <script type="text/javascript" language="text/javascript" src="../script.js?v=1.1.6"></script>
+    <script type="text/javascript" language="text/javascript" src="../script.js?v=1.2.4"></script>
     <style>
         /**
             General colors
@@ -107,7 +107,6 @@
         }
 
         #canvas:hover {
-            transform: scale(1.3);
             cursor: pointer;
         }
 
@@ -132,6 +131,24 @@
             display: block;
             margin: 0 auto;
             transition: transform ease-in-out 1s;
+        }
+
+        #check-button {
+            height: 30px;
+            width: 200px;
+            border-radius: 15px;
+            border: 3px solid #03799D;
+            background-color: #03899C;
+            color: #FFAE00;
+            padding: 0 2% 0 2%;
+            outline: none;
+            text-shadow: 1px 1px 2px #FF1300;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #check-button:active {
+            background-color: #5FC0CE;
         }
 
     </style>
@@ -162,7 +179,9 @@
                     отмеченную на графике синим цветом. Для начала работы
                     выберите нужные значения <span class="param">X</span>, <span class="param">Y</span>,
                     параметра <span class="param">R</span>
-                    и нажмите на <span class="check-text">График</span>.
+                    и нажмите на кнопку <span class="check-text">Проверить</span> или выберите значения
+                    параметра <span class="param">R</span> и нажмите на <span class="check-text">График</span>,
+                    <span class="param">X</span> и <span class="param">Y</span> будут взяты с графика.
                 </div>
             </td>
         </tr>
@@ -248,7 +267,8 @@
                                 <td rowspan="2">
                                     <button type="button" class="param-button">5</button>
                                 </td>
-                                <td></td>
+                                <td rowspan="2">
+                                    <button type="button" id="check-button" onclick="formSubmit();">Проверить</button></td>
                                 <td></td>
                             </tr>
                             <tr>
@@ -263,7 +283,7 @@
         </tr>
     </table>
     <p align="center"><span class="check-text">График области:</span></p>
-    <canvas id="canvas" onclick="formSubmit();" title="График области" width="360px" height="360px"></canvas>
+    <canvas id="canvas" onclick="canvasSubmit(event);" title="График области" width="360px" height="360px"></canvas>
     <br>
     <table class="article-table" rules="all" id="result-table">
         <colgroup style="background-color: #21cfda">

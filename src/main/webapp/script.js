@@ -1,3 +1,7 @@
+const width = 270;
+const hight = 270;
+const r = 43;
+
 function checkY() {
     let number = parseFloat($("input[name='param-y']").val().replace(",", "."));
     return number >= -5 && number <= 3;
@@ -78,7 +82,23 @@ function formSubmit() {
     else
         clearR();
     if (!flag)
-        document.getElementById("form").submit(event);
+        document.getElementById("form").submit();
+}
+
+function canvasSubmit(event) {
+    if (!checkR()) {
+        outputErrorR();
+        return;
+    }
+    else
+        clearR();
+    let rect = $("#canvas")[0].getBoundingClientRect();
+    let paramR = $("[name='param-r']").val();
+    let x = (event.clientX - rect.left - width / 2) / r * paramR;
+    let y = (hight / 2 - (event.clientY - rect.top)) / r * paramR;
+    $("[name='param-x']").val(x);
+    $("[name='param-y']").val(y);
+    document.getElementById("form").submit();
 }
 
 function check(input) {
@@ -86,10 +106,7 @@ function check(input) {
 }
 
 function drawPoints() {
-    const width = 270;
-    const hight = 270;
     const extraValue = 90;
-    const r = 43;
     let canvas = document.getElementById("canvas");
     let ctx = canvas.getContext("2d");
     ctx.fillStyle = "white";
