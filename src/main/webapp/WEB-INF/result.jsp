@@ -166,7 +166,7 @@
     <table>
         <tr>
             <td colspan="6">
-                <form action="/index.html">
+                <form action="${pageContext.request.contextPath}/index.html">
                     <button id="back-page-button" type="submit">Вернуться на страницу ввода параметров</button>
                 </form>
             </td>

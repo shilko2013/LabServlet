@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/WEB-INF/check")
 public class AreaCheckServlet extends HttpServlet {
 
     public String escapeHTML(String s) {

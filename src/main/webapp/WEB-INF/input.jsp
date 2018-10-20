@@ -8,9 +8,9 @@
 <html>
 <head>
     <title>Лаба 2</title>
-    <script type="text/javascript" language="text/javascript" src="../sort_table.js"></script>
-    <script type="text/javascript" language="text/javascript" src="../jquery-3.3.1.js"></script>
-    <script type="text/javascript" language="text/javascript" src="../script.js?v=1.3.4"></script>
+    <script type="text/javascript" language="text/javascript" src="${pageContext.request.contextPath}/sort_table.js"></script>
+    <script type="text/javascript" language="text/javascript" src="${pageContext.request.contextPath}/jquery-3.3.1.js"></script>
+    <script type="text/javascript" language="text/javascript" src="${pageContext.request.contextPath}/script.js?v=1.3.4"></script>
     <style>
         /**
             General colors
@@ -187,7 +187,7 @@
         </tr>
         <tr>
             <td>
-                <form id="form" action="/index.html" method="GET">
+                <form id="form" action="${pageContext.request.contextPath}/index.html" method="GET">
                     <input type="hidden" name="param-x" value="-3">
                     <fieldset>
                         <legend style="text-align: left;"><span class="check-text">Данные для проверки</span></legend>
