@@ -1,6 +1,6 @@
 const width = 270;
 const hight = 270;
-const r = 43;
+const r = 45;
 const extraValue = 90;
 
 function checkY() {

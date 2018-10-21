@@ -44,6 +44,8 @@ public class AreaCheckServlet extends HttpServlet {
             x = Double.parseDouble(xStringTemp);
             y = Double.parseDouble(yStringTemp);
             r = Double.parseDouble(rStringTemp);
+            if (x < -3 || x > 5 || y < -5 || y > 3 || r < 1 || r > 4)
+                throw new IllegalArgumentException();
             resultRow.setMatch(x < 0 && x > -r / 2 && y > 0 && y < r
                     || x >= 0 && y > 0 && y < -x + r / 2
                     || x < 0 && y <= 0 && x * x + y * y < r * r / 4);

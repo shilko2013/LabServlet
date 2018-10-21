@@ -10,7 +10,7 @@
     <title>Лаба 2</title>
     <script type="text/javascript" language="text/javascript" src="${pageContext.request.contextPath}/sort_table.js"></script>
     <script type="text/javascript" language="text/javascript" src="${pageContext.request.contextPath}/jquery-3.3.1.js"></script>
-    <script type="text/javascript" language="text/javascript" src="${pageContext.request.contextPath}/script.js?v=1.3.4"></script>
+    <script type="text/javascript" language="text/javascript" src="${pageContext.request.contextPath}/script.js?v=1.3.5"></script>
     <style>
         /**
             General colors
